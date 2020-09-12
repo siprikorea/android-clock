@@ -3,6 +3,7 @@ package com.siprikorea.clock;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.TypedValue;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     String mTimeString;
     TextView mDateCtrl;
     TextView mTimeCtrl;
-    ProgressHandler mProgressHandler = new ProgressHandler();
+    static Handler mProgressHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mDateCtrl = findViewById(R.id.date);
         mTimeCtrl = findViewById(R.id.time);
+        mDateCtrl.setTextSize(TypedValue.COMPLEX_UNIT_SP, mTimeCtrl.getTextSize() / 2);
+
+        mProgressHandler = new Handler() {
+            @Override
+            public void handleMessage(@NonNull Message msg) {
+                String[] dateTime = (String[])msg.obj;
+                mDateCtrl.setText(dateTime[0]);
+                mTimeCtrl.setText(dateTime[1]);
+            }
+        };
+
         runTime();
     }
 
@@ -42,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
                         mTimeString = mTimeFormat.format(date);
 
                         Message msg = mProgressHandler.obtainMessage();
+                        msg.obj = new String[]{ mDateString, mTimeString };
                         mProgressHandler.sendMessage(msg);
 
                         Thread.sleep(1000);
@@ -51,13 +64,5 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }).start();
-    }
-
-    class ProgressHandler extends Handler {
-        @Override
-        public void handleMessage(@NonNull Message msg) {
-            mDateCtrl.setText(mDateString);
-            mTimeCtrl.setText(mTimeString);
-        }
     }
 }
