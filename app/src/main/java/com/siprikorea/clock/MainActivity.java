@@ -12,31 +12,35 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
-    Context mContext;
-    TextView mTimeCtrl;
-    TextView mDateCtrl;
-    static Handler mTimeHandler;
+    private Context mContext;
+    private TextView mTimeView;
+    private TextView mDateView;
+    static private Handler mTimeHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mContext = this;
-        mDateCtrl = findViewById(R.id.date);
-        mTimeCtrl = findViewById(R.id.time);
-        mDateCtrl.setTextSize(TypedValue.COMPLEX_UNIT_SP, mTimeCtrl.getTextSize() / 2);
+        mTimeView = findViewById(R.id.time);
+        mDateView = findViewById(R.id.date);
+        mDateView.setTextSize(TypedValue.COMPLEX_UNIT_SP, mTimeView.getTextSize() / 2);
 
         mTimeHandler = new Handler(Looper.getMainLooper()) {
             @Override
             public void handleMessage(@NonNull Message msg) {
                 Date date = new Date();
-                String timeString = DateFormat.getTimeFormat(mContext).format(date);
-                String dateString = DateFormat.getDateFormat(mContext).format(date);
-                mTimeCtrl.setText(timeString);
-                mDateCtrl.setText(dateString);
+                SimpleDateFormat mTimeFormat = new SimpleDateFormat("KK:mm:ss", Locale.getDefault());
+                java.text.DateFormat mDateFormat = DateFormat.getLongDateFormat(mContext);
+                String timeString = mTimeFormat.format(date);
+                String dateString = mDateFormat.format(date);
+                mTimeView.setText(timeString);
+                mDateView.setText(dateString);
             }
         };
 
@@ -49,9 +53,7 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 while (true) {
                     try {
-                        Message msg = mTimeHandler.obtainMessage();
-                        mTimeHandler.sendMessage(msg);
-
+                        mTimeHandler.sendMessage(mTimeHandler.obtainMessage());
                         Thread.sleep(1000);
                     } catch (Exception e) {
                         e.printStackTrace();
