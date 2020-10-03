@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import android.text.format.DateFormat;
 import android.util.TypedValue;
 import android.widget.TextView;
 
@@ -36,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
             public void handleMessage(@NonNull Message msg) {
                 Date date = new Date();
                 SimpleDateFormat mTimeFormat = new SimpleDateFormat("KK:mm:ss", Locale.getDefault());
-                java.text.DateFormat mDateFormat = DateFormat.getLongDateFormat(mContext);
+                SimpleDateFormat mDateFormat = new SimpleDateFormat("YYYY.MM.dd (E)", Locale.getDefault());
                 String timeString = mTimeFormat.format(date);
                 String dateString = mDateFormat.format(date);
                 mTimeView.setText(timeString);
