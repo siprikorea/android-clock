@@ -19,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
     private Context mContext;
     private TextView mTimeView;
     private TextView mDateView;
+    private SimpleDateFormat mTimeFormat;
+    private SimpleDateFormat mDateFormat;
     static private Handler mTimeHandler;
 
     @Override
@@ -30,16 +32,15 @@ public class MainActivity extends AppCompatActivity {
         mDateView = findViewById(R.id.date);
         mDateView.setTextSize(TypedValue.COMPLEX_UNIT_SP, mTimeView.getTextSize() / 2);
 
+        mTimeFormat = new SimpleDateFormat("KK:mm:ss", Locale.getDefault());
+        mDateFormat = new SimpleDateFormat("yyyy.MM.dd (E)", Locale.getDefault());
+
         mTimeHandler = new Handler(Looper.getMainLooper()) {
             @Override
             public void handleMessage(@NonNull Message msg) {
                 Date date = new Date();
-                SimpleDateFormat mTimeFormat = new SimpleDateFormat("KK:mm:ss", Locale.getDefault());
-                SimpleDateFormat mDateFormat = new SimpleDateFormat("YYYY.MM.dd (E)", Locale.getDefault());
-                String timeString = mTimeFormat.format(date);
-                String dateString = mDateFormat.format(date);
-                mTimeView.setText(timeString);
-                mDateView.setText(dateString);
+                mTimeView.setText(mTimeFormat.format(date));
+                mDateView.setText(mDateFormat.format(date));
             }
         };
 
