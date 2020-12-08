@@ -1,6 +1,5 @@
 package com.siprikorea.clock;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -16,7 +15,6 @@ import java.util.Date;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
-    private Context mContext;
     private TextView mTimeView;
     private TextView mDateView;
     private SimpleDateFormat mTimeFormat;
@@ -27,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mContext = this;
+
         mTimeView = findViewById(R.id.time);
         mDateView = findViewById(R.id.date);
         mDateView.setTextSize(TypedValue.COMPLEX_UNIT_SP, mTimeView.getTextSize() / 2);
