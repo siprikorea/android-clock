@@ -5,27 +5,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:keepScreenOn="true">
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/timeStartGuideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.1"/>
+        app:layout_constraintGuide_percent="0.1" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/timeEndGuideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.9"/>
+        app:layout_constraintGuide_percent="0.9" />
+
     <TextView
         android:id="@+id/time"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:autoSizeTextType="uniform"
         android:ellipsize="end"
         android:gravity="center"
         android:maxLines="1"
         android:text="@string/time"
-        android:layout_height="0dp"
-        android:layout_width="0dp"
         app:layout_constraintBottom_toTopOf="@+id/date"
         app:layout_constraintEnd_toEndOf="@id/timeEndGuideline"
         app:layout_constraintStart_toStartOf="@id/timeStartGuideline"
@@ -36,22 +39,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.2"/>
+        app:layout_constraintGuide_percent="0.2" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/dateEndGuideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.8"/>
+        app:layout_constraintGuide_percent="0.8" />
+
     <TextView
         android:id="@+id/date"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:autoSizeTextType="uniform"
         android:ellipsize="end"
         android:gravity="center"
         android:maxLines="1"
         android:text="@string/date"
-        android:layout_height="0dp"
-        android:layout_width="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/dateEndGuideline"
         app:layout_constraintStart_toStartOf="@id/dateStartGuideline"
