@@ -1,5 +1,6 @@
 package com.siprikorea.clock
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -23,8 +24,8 @@ class MainActivity : AppCompatActivity() {
         val mDateView: TextView = findViewById(R.id.date)
 
         // time format
-        val mTimeFormat = SimpleDateFormat("KK:mm:ss", Locale.getDefault())
-        val mDateFormat = SimpleDateFormat("yyyy.MM.dd (E)", Locale.getDefault())
+        val mTimeFormat = SimpleDateFormat("KK:mm:ss", Locale.ENGLISH)
+        val mDateFormat = SimpleDateFormat("yyyy. MM. dd EEE", Locale.ENGLISH)
 
         // time handler
         mTimeHandler = object : Handler(Looper.getMainLooper()) {

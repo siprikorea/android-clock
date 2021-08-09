@@ -4,6 +4,7 @@
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#000000"
     android:keepScreenOn="true">
 
     <androidx.constraintlayout.widget.Guideline
@@ -25,10 +26,11 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:autoSizeTextType="uniform"
-        android:ellipsize="end"
+        android:fontFamily="@font/digital"
         android:gravity="center"
         android:maxLines="1"
         android:text="@string/time"
+        android:textColor="#C2FEE0"
         app:layout_constraintBottom_toTopOf="@+id/date"
         app:layout_constraintEnd_toEndOf="@id/timeEndGuideline"
         app:layout_constraintStart_toStartOf="@id/timeStartGuideline"
@@ -53,10 +55,11 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:autoSizeTextType="uniform"
-        android:ellipsize="end"
+        android:fontFamily="@font/digital"
         android:gravity="center"
         android:maxLines="1"
         android:text="@string/date"
+        android:textColor="#C3FEE0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/dateEndGuideline"
         app:layout_constraintStart_toStartOf="@id/dateStartGuideline"

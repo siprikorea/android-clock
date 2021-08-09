@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">clock</string>
+    <string name="app_name">Clock</string>
     <string name="date">date</string>
     <string name="time">time</string>
 </resources>
